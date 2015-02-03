@@ -21,6 +21,6 @@ Paper-Lightbox is a web component built with Polymer that allows you to display 
         <img src="link-to-thumbnail" data-fullimage="link-to-fullsize-image"></img>
         <img src="link-to-thumbnail" data-fullimage="link-to-fullsize-image"></img>
         <img src="link-to-thumbnail" data-fullimage="link-to-fullsize-image"></img>
-    </paper-lightbox
+    </paper-lightbox>
 ```
 
