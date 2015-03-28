@@ -118,7 +118,7 @@
 		<paper-icon-button id="closebutton" class="close-button" icon="close" on-click="{{closeClick}}"></paper-icon-button>
 
 		<div class="image-thumbnails" layout horizontal center>
-			<content select="img" on-click="{{imageClick}}"></content>
+			<content select="*[src][data-fullimage]" on-click="{{imageClick}}"></content>
 			<content select="span"></content>
 		</div>
 		<content></content>
