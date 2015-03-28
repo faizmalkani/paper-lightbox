@@ -125,12 +125,55 @@
 
 	</template>
 	<script>
+		(function(){
+			var
+				origImage
+			;
 		Polymer(
 		{
 			imageClick: function(event, detail, sender)
 			{
+				if(!this.origImage){
+					this.origImage = this.$.fullimage;
+				}
+				if(
+					this.hasAttribute('id') &&
+					!!this.id &&
+					document.querySelector(
+						'*[paper-lightbox="' +
+							this.id +
+						'"] img.fullsize-image'
+					)
+				){
+					this.$.fullimage = document.querySelector(
+						'*[paper-lightbox="' +
+							this.id +
+						'"] img.fullsize-image'
+					);
+					this.$.dimmedbackground.classList.remove(
+						'dimmed-background-activated'
+					);
+					this.$.closebutton.classList.remove(
+						'close-button-visible'
+					);
+					var
+						container = document.querySelector(
+							'*[paper-lightbox="' +
+								this.id +
+							'"]'
+						)
+					;
+					if(
+						'toggle' in container &&
+						typeof(container.toggle) === 'function'
+					){
+						container.toggle();
+					}
+				}else{
+					this.$.fullimage = this.origImage;
 				this.$.dimmedbackground.classList.add('dimmed-background-activated');
 				this.$.closebutton.classList.add('close-button-visible');
+				}
 				var fullImageUrl = event.path[[].indexOf.call(event.path, sender) - 1].getAttribute("data-fullimage");
 				this.$.fullimage.src = fullImageUrl;
 				this.$.fullimage.classList.add('fullsize-image-visible');
@@ -143,5 +186,6 @@
 				this.$.fullimage.classList.remove('fullsize-image-visible');
 			}
 		});
+		})();
 	</script>
 </polymer-element>
